@@ -63,7 +63,7 @@ public class MemberShipService implements UserDetailsService {
     }
 
     // 로그인  // implements UserDetailsService 인터페이스를 가져와 메소드 구현
-    // String username > email로 쓸거임
+    // String username > String email
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         // 사용자가 입력한 email을 가지고 DB에서 검색한다.
@@ -86,7 +86,8 @@ public class MemberShipService implements UserDetailsService {
         if (memberShip == null) {
             throw new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
         }
-        // 예외처리가 되지 않았다면
+
+        // 예외처리가 되지 않았다면 가져온 값으로 로그인 진행
         log.info("현재 찾은 회원정보" + memberShip);
 
         // 권한 처리
